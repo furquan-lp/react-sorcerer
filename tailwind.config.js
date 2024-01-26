@@ -12,6 +12,10 @@ export default {
         'nord5': '#e5e9f0',
         'nord6': '#eceff4'
       },
+      fontFamily: {
+        'logo': ['Handlee', 'cursive'],
+        'logotext': ['Caveat', 'cursive']
+      }
     },
   },
   plugins: []
