@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js}"],
+  content: ["./src/**/*.{ts,tsx}"],
   theme: {
     colors: {
       'nord0': '#2e3440',
@@ -10,9 +10,5 @@ export default {
     },
     extend: {},
   },
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {}
-  },
+  plugins: [] 
 }
-
