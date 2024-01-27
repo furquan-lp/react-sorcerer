@@ -1,3 +1,5 @@
+import { FiGithub } from "react-icons/fi";
+
 export default function Header() {
   return (
     <header className='bg-nord0 p-1 md:p-2.5'>
@@ -9,9 +11,14 @@ export default function Header() {
           <span className='font-logotext pl-8 text-nord4 hidden md:inline'>a magician never reveals his secrets</span>
         </span>
         <span className='flex items-center gap-x-2 md:gap-x-3 text-sm md:text-xl'>
-          <a href='/' className='text-nord1 bg-nord4 md:p-1 p-0.5 underline hover:no-underline rounded-md'>Editor
-          </a>
-          <a href='/about' className='hover:underline'>About</a>
+          <span className='flex items-center'>
+            <a href='/' className='text-nord1 bg-nord4 border border-r-0 border-nord4 md:p-1 p-0.5 underline
+             hover:no-underline rounded-md rounded-r-none'>Editor</a>
+            <a href='/about' className='hover:underline border border-nord4 border-l-0 rounded-l-none rounded-md p-0.5
+             md:p-1'>About</a>
+          </span>
+          <a href='https://github.com/furquan-lp/react-sorcerer' className='text-base md:text-xl text-nord6
+           md:text-nord4 md:hover:text-nord6 md:hover:text-2xl transition-all delay-200'><FiGithub /></a>
         </span>
       </span>
     </header>
