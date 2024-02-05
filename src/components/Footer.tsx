@@ -5,7 +5,10 @@ export default function Footer() {
         <div className='flex flex-col gap-y-3 flex-wrap w-2/3 md:flex-nowrap'>
           <span>Copyright &copy; 2024 Syed Furquan Ahmad</span>
           <span>Powered by DigitalOcean</span>
-          <span>This website is licensed under the Apache License 2.0. See the LICENSE for more details.</span>
+          <span>This website is licensed under the Apache License 2.0. See the <a
+            href="https://raw.githubusercontent.com/furquan-lp/react-sorcerer/master/LICENSE"
+            className="underline hover:no-underline">LICENSE</a> for more details.
+          </span>
         </div>
         <div className='flex flex-col gap-y-4 text-sm md:text-base'>
           <span className='flex flex-col gap-y-2 md:flex-row justify-between gap-x-1 md:gap-x-10'>
