@@ -19,7 +19,7 @@ export default function Footer() {
             </a>
           </span>
           <span className='flex flex-col gap-y-2 md:flex-row justify-between gap-x-1 md:gap-x-10'>
-            <a href="https://api.nextdev.in/resume" className='hover:text-nord7 hover:underline transition-all
+            <a href="https://api.nextdev.in/resume.pdf" className='hover:text-nord7 hover:underline transition-all
              delay-200'>
               Resume
             </a>
