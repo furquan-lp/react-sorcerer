@@ -12,8 +12,13 @@ import 'draft-js/dist/Draft.css';
 
 function getDecorators(): DraftDecorator<any>[] {
   const richStyles: [RegExp, string][] = [
+    [/(#{4}\s)(.*)/g, 'font-bold text-base'],
+    [/(#{3}\s)(.*)/g, 'font-bold text-[1.17em]'],
+    [/(#{2}\s)(.*)/g, 'font-bold text-[1.5em]'],
+    [/(#{1}\s)(.*)/g, 'font-bold text-[2em]'],
+    [/\*\*\*[^*]+\*\*\*/g, 'italic font-bold'],
     [/\*\*[^*]+\*\*/g, 'font-bold'],
-    [/\*[^*]+\*/g, 'italic']
+    [/\*[^*]+\*/g, 'italic'],
   ]
 
   function findWithRegex(regex: RegExp): (
@@ -46,11 +51,6 @@ function getDecorators(): DraftDecorator<any>[] {
     }
   });
 }
-const BoldSpan = ({ offsetKey, children }: { offsetKey: string, children: React.ReactNode }) => {
-  return (
-    <span className='font-bold' key={offsetKey}>{children}</span>
-  )
-};
 
 export default function RSEditor() {
   const decorator: CompositeDecorator = new CompositeDecorator(getDecorators())
