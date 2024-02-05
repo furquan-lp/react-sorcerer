@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Handlee&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.editor ::selection {
+  background: #4c566a;
+}
