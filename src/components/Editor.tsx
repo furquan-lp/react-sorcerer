@@ -12,7 +12,12 @@ import 'draft-js/dist/Draft.css';
 
 function getDecorators(): DraftDecorator<any>[] {
   const richStyles: [RegExp, string][] = [
-    [/\`[^*]+\`/g, 'font-mono'],
+    [/\`[^*]+\`/g, 'font-mono bg-nord2 text-nord8 p-0.5 rounded'],
+    [/-[^*]+-/g, 'block text-center text-2xl'],
+    [/(\_{1}#{4}\s)(.*)/g, 'font-bold text-base underline'],
+    [/(\_{1}#{3}\s)(.*)/g, 'font-bold text-[1.17em] underline'],
+    [/(\_{1}#{2}\s)(.*)/g, 'font-bold text-[1.5em] underline'],
+    [/(\_{1}#{1}\s)(.*)/g, 'font-bold text-[2em] underline'],
     [/(#{4}\s)(.*)/g, 'font-bold text-base'],
     [/(#{3}\s)(.*)/g, 'font-bold text-[1.17em]'],
     [/(#{2}\s)(.*)/g, 'font-bold text-[1.5em]'],
@@ -62,7 +67,7 @@ export default function RSEditor() {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty(decorator));
 
   return (
-    <div className='my-10 p-6 shadow shadow-nord0 rounded bg-nord4 text-nord0 min-h-96 max-h-[75vh] overflow-scroll'>
+    <div className='my-10 p-6 shadow shadow-nord0 rounded bg-nord3 text-nord4 min-h-96 max-h-[75vh] overflow-scroll'>
       <Editor editorState={editorState} onChange={setEditorState} />
     </div>
   );
