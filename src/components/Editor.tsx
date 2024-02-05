@@ -12,13 +12,18 @@ import 'draft-js/dist/Draft.css';
 
 function getDecorators(): DraftDecorator<any>[] {
   const richStyles: [RegExp, string][] = [
+    [/\`[^*]+\`/g, 'font-mono'],
     [/(#{4}\s)(.*)/g, 'font-bold text-base'],
     [/(#{3}\s)(.*)/g, 'font-bold text-[1.17em]'],
     [/(#{2}\s)(.*)/g, 'font-bold text-[1.5em]'],
     [/(#{1}\s)(.*)/g, 'font-bold text-[2em]'],
+    [/\_\*\*\*[^*]+\*\*\*\_/g, 'italic font-bold underline'],
     [/\*\*\*[^*]+\*\*\*/g, 'italic font-bold'],
+    [/\_\*\*[^*]+\*\*\_/g, 'font-bold underline'],
     [/\*\*[^*]+\*\*/g, 'font-bold'],
+    [/\_\*[^*]+\*\_/g, 'italic underline'],
     [/\*[^*]+\*/g, 'italic'],
+    [/\_[^*]+\_/g, 'underline'],
   ]
 
   function findWithRegex(regex: RegExp): (
