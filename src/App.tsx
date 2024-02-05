@@ -1,4 +1,5 @@
 import RSEditor from "./components/Editor";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <article className='md:w-1/2 md:mx-auto md:p-0 p-2'>
         <RSEditor />
       </article>
+      <Footer />
     </div>
   );
 };
