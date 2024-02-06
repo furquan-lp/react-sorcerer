@@ -1,4 +1,4 @@
--Welcome to React Sorcerer v0.6.0-
+-Welcome to React Sorcerer v0.6.2-
 # Heading 1
 ## Heading 2
 ### Heading 3
