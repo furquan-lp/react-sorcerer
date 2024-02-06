@@ -1,3 +1,3 @@
 # μSorcerer - Lightweight Markdown Editor Written in React
 
-Available live at: [editor.sorcerer.live](https://editor.sorcerer.live/)
+Available live at: [sorcerer.sorcerer.live](https://sorcerer.sorcerer.live/)
