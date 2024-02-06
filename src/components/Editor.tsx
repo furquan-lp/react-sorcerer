@@ -86,7 +86,8 @@ export default function RSEditor({ text, lsKey }: { text?: string | undefined, l
   return (
     <div className='editor my-10 p-6 shadow shadow-nord0 rounded bg-nord2 text-nord6 min-h-96 max-h-[75vh]
      overflow-scroll'>
-      <Editor editorState={editorState} onChange={handleEditorState} placeholder='You can begin typing...' />
+      <Editor editorState={editorState} onChange={handleEditorState} placeholder='You can begin typing...'
+        spellCheck={true} />
     </div>
   );
 }
