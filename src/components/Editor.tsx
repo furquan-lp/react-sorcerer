@@ -62,14 +62,14 @@ function getDecorators(): DraftDecorator<any>[] {
   });
 }
 
-export default function RSEditor() {
+export default function RSEditor({ text }: { text?: string | undefined }) {
   const decorator: CompositeDecorator = new CompositeDecorator(getDecorators())
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty(decorator));
 
   return (
-    <div className='editor my-10 p-6 shadow shadow-nord0 rounded bg-nord2 text-nord4 min-h-96 max-h-[75vh]
+    <div className='editor my-10 p-6 shadow shadow-nord0 rounded bg-nord2 text-nord6 min-h-96 max-h-[75vh]
      overflow-scroll'>
-      <Editor editorState={editorState} onChange={setEditorState} />
+      <Editor editorState={editorState} onChange={setEditorState} placeholder='You can begin typing...' />
     </div>
   );
 }
