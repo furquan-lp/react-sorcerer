@@ -62,7 +62,7 @@ function getDecorators(): DraftDecorator<any>[] {
   });
 }
 
-export default function RSEditor({ text }: { text?: string | undefined }) {
+export default function RSEditor({ text, lsKey }: { text?: string | undefined, lsKey: string }) {
   const decorator: CompositeDecorator = new CompositeDecorator(getDecorators())
   const [editorState, setEditorState] = useState(() => {
     if (text) {
@@ -78,10 +78,15 @@ export default function RSEditor({ text }: { text?: string | undefined }) {
     }
   }, [text]);
 
+  const handleEditorState = (e: EditorState) => {
+    localStorage.setItem(lsKey, e.getCurrentContent().getPlainText());
+    setEditorState(e);
+  }
+
   return (
     <div className='editor my-10 p-6 shadow shadow-nord0 rounded bg-nord2 text-nord6 min-h-96 max-h-[75vh]
      overflow-scroll'>
-      <Editor editorState={editorState} onChange={setEditorState} placeholder='You can begin typing...' />
+      <Editor editorState={editorState} onChange={handleEditorState} placeholder='You can begin typing...' />
     </div>
   );
 }
