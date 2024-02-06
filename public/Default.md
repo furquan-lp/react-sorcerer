@@ -1,4 +1,4 @@
--Welcome to React Sorcerer v0.3-
+-Welcome to React Sorcerer v0.6.0-
 # Heading 1
 ## Heading 2
 ### Heading 3
@@ -14,9 +14,9 @@
 You can _underline_ text too!
 _# You can also underline headings!
 _## And nest underlined headings!
-_### More nested headings.
 *And* _**mix**_ and _***match***_ styles.
 
+Any changes you make are automatically saved into your browser cache!
 And it works on mobile as well. Check it out!
 
 Enjoy!
