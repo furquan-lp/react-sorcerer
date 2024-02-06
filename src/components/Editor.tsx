@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Editor, EditorState, CompositeDecorator, ContentBlock, ContentState, DraftDecoratorComponentProps, DraftDecorator } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 
@@ -62,14 +62,31 @@ function getDecorators(): DraftDecorator<any>[] {
   });
 }
 
-export default function RSEditor() {
+export default function RSEditor({ text, lsKey }: { text?: string | undefined, lsKey: string }) {
   const decorator: CompositeDecorator = new CompositeDecorator(getDecorators())
-  const [editorState, setEditorState] = useState(() => EditorState.createEmpty(decorator));
+  const [editorState, setEditorState] = useState(() => {
+    if (text) {
+      return EditorState.createWithContent(ContentState.createFromText(text), decorator);
+    } else {
+      return EditorState.createEmpty(decorator);
+    }
+  });
+
+  useEffect(() => {
+    if (text) {
+      setEditorState(() => EditorState.createWithContent(ContentState.createFromText(text), decorator));
+    }
+  }, [text]);
+
+  const handleEditorState = (e: EditorState) => {
+    localStorage.setItem(lsKey, e.getCurrentContent().getPlainText());
+    setEditorState(e);
+  }
 
   return (
-    <div className='editor my-10 p-6 shadow shadow-nord0 rounded bg-nord2 text-nord4 min-h-96 max-h-[75vh]
+    <div className='editor my-10 p-6 shadow shadow-nord0 rounded bg-nord2 text-nord6 min-h-96 max-h-[75vh]
      overflow-scroll'>
-      <Editor editorState={editorState} onChange={setEditorState} />
+      <Editor editorState={editorState} onChange={handleEditorState} placeholder='You can begin typing...' />
     </div>
   );
 }
