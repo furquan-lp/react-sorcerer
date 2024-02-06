@@ -36,6 +36,7 @@ function getDecorators(): DraftDecorator<any>[] {
     callback: (start: number, end: number) => void,
     contentState: ContentState,
   ) => void {
+    // @ts-ignore
     return (contentBlock: ContentBlock, callback: (start: number, end: number) => void, contentState: ContentState) => {
       const text = contentBlock.getText();
       let matchArr;
