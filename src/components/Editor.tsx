@@ -100,8 +100,8 @@ export default function RSEditor({ text, lsKey }: { text?: string | undefined, l
   }
 
   return (
-    <div className='my-10 md:p-1 shadow shadow-nord0 rounded bg-nord2 text-nord6'>
-      <span className='flex items-center justify-end gap-x-1 m-1'>
+    <div className='my-10 p-1 shadow shadow-nord0 rounded bg-nord2 text-nord6'>
+      <span className='flex items-center justify-end gap-x-1'>
         <MdOutlineSpellcheck className={`text-xl md:text-2xl p-0.5 rounded hover:bg-nord3 cursor-pointer
         ${buttonsClicked[0] ? 'bg-nord1' : 'bg-nord2'}`}
           onClick={() => setButtonsClicked([!buttonsClicked[0], buttonsClicked[1]])} />
