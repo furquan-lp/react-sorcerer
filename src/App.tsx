@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import RSEditor from "./components/Editor";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import RSEditor from './components/Editor';
+import Footer from './components/Footer';
+import Header from './components/Header';
 
 const LOCAL_TEXT_KEY = 'rseText';
 const DEFAULT_MD_FILE_NAME = 'Default.md';
