@@ -67,7 +67,7 @@ function getDecorators(): DraftDecorator<any>[] {
 }
 
 export default function RSEditor({ text, lsKey }: { text?: string | undefined, lsKey: string }) {
-  const decorator: CompositeDecorator = new CompositeDecorator(getDecorators())
+  const decorator: CompositeDecorator = new CompositeDecorator(getDecorators());
   const [editorState, setEditorState] = useState(() => {
     if (text) {
       return EditorState.createWithContent(ContentState.createFromText(text), decorator);
@@ -75,6 +75,7 @@ export default function RSEditor({ text, lsKey }: { text?: string | undefined, l
       return EditorState.createEmpty(decorator);
     }
   });
+  const [buttonsClicked, setButtonsClicked] = useState<boolean[]>([false, false]);
 
   useEffect(() => {
     if (text) {
@@ -90,12 +91,15 @@ export default function RSEditor({ text, lsKey }: { text?: string | undefined, l
   return (
     <div className='my-10 md:p-1 shadow shadow-nord0 rounded bg-nord2 text-nord6'>
       <span className='flex items-center justify-end gap-x-1 m-1'>
-        <MdOutlineSpellcheck className='text-xl md:text-2xl bg-nord2 p-0.5 rounded hover:bg-nord3 cursor-pointer' />
-        <FiRefreshCw className='text-xl md:text-2xl bg-nord2 p-0.5 rounded hover:bg-nord3 cursor-pointer' />
+        <MdOutlineSpellcheck className={`text-xl md:text-2xl p-0.5 rounded hover:bg-nord3 cursor-pointer
+        ${buttonsClicked[0] ? 'bg-nord1' : 'bg-nord2'}`}
+          onClick={() => setButtonsClicked([!buttonsClicked[0], buttonsClicked[1]])} />
+        <FiRefreshCw className={`text-xl md:text-2xl p-0.5 rounded hover:bg-nord3 cursor-pointer
+        ${buttonsClicked[1] ? 'bg-nord1' : 'bg-nord2'}`} />
       </span>
       <div className='editor min-h-96 max-h-[75vh] overflow-scroll p-6'>
         <Editor editorState={editorState} onChange={handleEditorState} placeholder='You can begin typing...'
-          spellCheck={true} />
+          spellCheck={buttonsClicked[0]} />
       </div>
     </div>
   );
