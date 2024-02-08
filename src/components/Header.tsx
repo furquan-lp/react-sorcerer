@@ -1,4 +1,4 @@
-import { FiGithub } from "react-icons/fi";
+import { FiGithub } from 'react-icons/fi';
 
 export default function Header() {
   return (
