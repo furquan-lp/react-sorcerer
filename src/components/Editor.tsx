@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Editor, EditorState, CompositeDecorator, ContentBlock, ContentState, DraftDecoratorComponentProps, DraftDecorator } from 'draft-js';
+import {
+  Editor, EditorState, CompositeDecorator, ContentBlock, ContentState, DraftDecoratorComponentProps, DraftDecorator
+} from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import { MdOutlineSpellcheck } from 'react-icons/md';
+import { FiRefreshCw } from 'react-icons/fi';
 
 //const StyledSpan = ({ style, offsetKey, children }: {
 //  style: string, offsetKey: string, children: React.ReactNode
@@ -84,10 +88,15 @@ export default function RSEditor({ text, lsKey }: { text?: string | undefined, l
   }
 
   return (
-    <div className='editor my-10 p-6 shadow shadow-nord0 rounded bg-nord2 text-nord6 min-h-96 max-h-[75vh]
-     overflow-scroll'>
-      <Editor editorState={editorState} onChange={handleEditorState} placeholder='You can begin typing...'
-        spellCheck={true} />
+    <div className='my-10 md:p-1 shadow shadow-nord0 rounded bg-nord2 text-nord6'>
+      <span className='flex items-center justify-end gap-x-1 m-1'>
+        <MdOutlineSpellcheck className='text-xl md:text-2xl bg-nord2 p-0.5 rounded hover:bg-nord3 cursor-pointer' />
+        <FiRefreshCw className='text-xl md:text-2xl bg-nord2 p-0.5 rounded hover:bg-nord3 cursor-pointer' />
+      </span>
+      <div className='editor min-h-96 max-h-[75vh] overflow-scroll p-6'>
+        <Editor editorState={editorState} onChange={handleEditorState} placeholder='You can begin typing...'
+          spellCheck={true} />
+      </div>
     </div>
   );
 }
