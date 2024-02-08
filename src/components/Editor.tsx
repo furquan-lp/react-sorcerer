@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Editor, EditorState, CompositeDecorator, ContentBlock, ContentState, DraftDecoratorComponentProps, DraftDecorator } from 'draft-js';
+import {
+  Editor, EditorState, CompositeDecorator, ContentBlock, ContentState, DraftDecoratorComponentProps, DraftDecorator
+} from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import { MdOutlineSpellcheck } from 'react-icons/md';
+import { FiRefreshCw } from 'react-icons/fi';
 
 //const StyledSpan = ({ style, offsetKey, children }: {
 //  style: string, offsetKey: string, children: React.ReactNode
@@ -63,7 +67,7 @@ function getDecorators(): DraftDecorator<any>[] {
 }
 
 export default function RSEditor({ text, lsKey }: { text?: string | undefined, lsKey: string }) {
-  const decorator: CompositeDecorator = new CompositeDecorator(getDecorators())
+  const decorator: CompositeDecorator = new CompositeDecorator(getDecorators());
   const [editorState, setEditorState] = useState(() => {
     if (text) {
       return EditorState.createWithContent(ContentState.createFromText(text), decorator);
@@ -71,6 +75,7 @@ export default function RSEditor({ text, lsKey }: { text?: string | undefined, l
       return EditorState.createEmpty(decorator);
     }
   });
+  const [buttonsClicked, setButtonsClicked] = useState<boolean[]>([false, false]);
 
   useEffect(() => {
     if (text) {
@@ -78,16 +83,35 @@ export default function RSEditor({ text, lsKey }: { text?: string | undefined, l
     }
   }, [text]);
 
+  useEffect(() => {
+    if (editorState.getCurrentContent().getPlainText()) {
+      setButtonsClicked([buttonsClicked[0], false]);
+    }
+  }, [editorState.getCurrentContent(), buttonsClicked[1]]);
+
   const handleEditorState = (e: EditorState) => {
     localStorage.setItem(lsKey, e.getCurrentContent().getPlainText());
     setEditorState(e);
+  };
+
+  const handleRefresh = () => {
+    setEditorState(() => EditorState.createEmpty(decorator));
+    setButtonsClicked([buttonsClicked[0], true]);
   }
 
   return (
-    <div className='editor my-10 p-6 shadow shadow-nord0 rounded bg-nord2 text-nord6 min-h-96 max-h-[75vh]
-     overflow-scroll'>
-      <Editor editorState={editorState} onChange={handleEditorState} placeholder='You can begin typing...'
-        spellCheck={true} />
+    <div className='my-10 p-1 shadow shadow-nord0 rounded bg-nord2 text-nord6'>
+      <span className='flex items-center justify-end gap-x-1'>
+        <MdOutlineSpellcheck className={`text-xl md:text-2xl p-0.5 rounded hover:bg-nord3 cursor-pointer
+        ${buttonsClicked[0] ? 'bg-nord1' : 'bg-nord2'}`}
+          onClick={() => setButtonsClicked([!buttonsClicked[0], buttonsClicked[1]])} />
+        <FiRefreshCw className={`text-xl md:text-2xl p-0.5 rounded hover:bg-nord3 cursor-pointer
+        ${buttonsClicked[1] ? 'bg-nord1' : 'bg-nord2'}`} onClick={handleRefresh} />
+      </span>
+      <div className='editor min-h-96 max-h-[75vh] overflow-scroll p-6'>
+        <Editor editorState={editorState} onChange={handleEditorState} placeholder='You can begin typing...'
+          spellCheck={buttonsClicked[0]} />
+      </div>
     </div>
   );
 }
