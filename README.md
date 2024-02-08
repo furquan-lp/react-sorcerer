@@ -2,4 +2,4 @@
 
 ![](./screenshot.png)
 
-Available live at: [sorcerer.sorcerer.live](https://sorcerer.sorcerer.live/)
+Available live at: [react.sorcerer.live](https://react.sorcerer.live/)
